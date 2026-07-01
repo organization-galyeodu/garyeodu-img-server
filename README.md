@@ -1,99 +1,90 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+<div id="top"></div>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+    <img src="./docs/image/logo.svg" alt="Logo" width="80" height="80">
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  <h3 align="center">가려두</h3>
 
-## Description
+  <p align="center">
+    AI가 도와주는 개인정보 보호 서비스
+  </p>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+</div>
+<br />
 
-## Project setup
+SNS에 사진을 게시하기 전, 이미지 속에 포함된 개인정보(신분증, 명함, 손글씨 메모 등)를 AI가 자동으로 분석해
+유출 가능성을 사전에 확인할 수 있도록 돕는 서비스입니다. 1박 2일 해커톤에서 기획부터 개발까지 진행된
+프로젝트입니다.
 
-```bash
-$ npm install
+<br>
+
+## 화면
+
+### 메인 화면
+
+개인정보 유출 관련 최신 뉴스가 피드 형태로 노출됩니다.
+
+### 사진 촬영 / 편집
+
+사진을 촬영하거나 업로드하면 AI가 개인정보가 노출된 영역을 분석하고, 모자이크 처리 또는 AI 편집 중 원하는 방식을 선택해 사진을 보정할 수 있습니다.
+
+### 결과 준비 / 프로필
+
+편집이 완료되면 결과를 확인하고 되돌리기가 가능하며, 프로필 화면에서는 보관된 사진(라이브러리)과 계정 관리(로그아웃, 회원탈퇴)를 확인할 수 있습니다.
+
+<br>
+
+## 기술 스택
+
+| 구분        | 기술                                   |
+| ----------- | -------------------------------------- |
+| 프론트엔드  | JavaScript, React Native (Expo Router) |
+| 백엔드      | NestJS                                 |
+| AI/클라우드 | Google Cloud (Vision API)              |
+
+<br>
+
+## 팀원
+
+프론트엔드 4명, 백엔드 2명(본인)으로 구성된 1박 2일 해커톤 협업 프로젝트입니다.
+
+<br>
+
+## 기능
+
+### 1. 개인정보 유출 뉴스 (`news`)
+
+백엔드의 `news` 모듈이 외부 뉴스 소스에서 개인정보 유출·AI 보안 관련 최신 기사를 가져와 메인 화면에 노출합니다.
+
+### 2. 사진 기반 개인정보 검사 (`image-processing`)
+
+`image-processing` 모듈이 Google Cloud Vision API와 연동되어, 업로드된 이미지에서 개인정보로 추정되는 영역(신분증, 텍스트, 얼굴 등)을 분석하고 결과를 반환합니다. 프론트엔드의 1차 검사 화면(`(1stInspection)`)에서 이 분석 결과를 기반으로 사용자에게 위험 영역을 안내합니다.
+
+### 3. 인증 및 프로필 (`(login)`, `(signup)`, `(user)`)
+
+로그인/회원가입 플로우와, 보관된 사진 라이브러리·로그아웃·회원탈퇴 기능을 제공하는 프로필 화면으로 구성되어 있습니다.
+
+<br>
+
+## 아키텍처
+
+```
+React Native (Expo Router) 앱
+   │
+   ├─ (main)          개인정보 유출 뉴스 피드
+   ├─ (login)/(signup) 인증
+   ├─ (edit)
+   │    ├─ (1stInspection)  사진 촬영/업로드 → 1차 AI 분석 요청
+   │    ├─ (aiPhotoEdit)    모자이크 / AI 편집 방식 선택 및 적용
+   │    └─ (photoResult)    편집 결과 확인, 완료/되돌리기
+   └─ (user)           프로필, 라이브러리, 계정 관리
+   │
+   ▼  API 호출
+NestJS 서버
+   ├─ image-processing  Google Cloud Vision API 연동, 개인정보 영역 분석/반환
+   └─ news              개인정보 유출 관련 외부 뉴스 조회
 ```
 
-## Compile and run the project
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+<br>
